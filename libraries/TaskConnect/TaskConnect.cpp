@@ -173,7 +173,7 @@ void TaskConnect::CreateApProcedure()
 	if (bitRead(updateInfo.data_1, sizeof(updateInfo.data_1) * 8 - 1))
 	{
 		String tempString_1;
-		tempString_1 += F("DEMO_SETUP_AP");
+		tempString_1 += F("RFID_SETUP_AP");
 		WiFi.mode(WIFI_AP_STA);
 		WiFi.softAP(tempString_1.c_str(), "SET_AP_PASSWORD", dataStore.terminalRecord.apChannel);
 		updateInfo.time_1 = millis() + 2000;

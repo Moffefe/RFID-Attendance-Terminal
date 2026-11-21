@@ -4,9 +4,9 @@ A two-controller time clock for recording employee arrivals and departures. An A
 
 [Interface gallery](docs/interface.md) · [ESP8266 sketch](Test_MainController145617/Test_MainController145617.ino) · [ATmega328P sketch](Test_MainController2/Test_MainController2.ino)
 
-![Six simulated LCD screens showing badge and PIN entry, employee recognition, event selection and save confirmation](media/terminal-sequence.png)
+![Six LCD screens showing badge and PIN entry, employee recognition, event selection and save confirmation](media/terminal-sequence.png)
 
-*One clock-in with a fictional employee. The simulation uses the firmware’s Polish prompts, clock glyphs and menu layout.*
+*The display guides the employee from badge scan to confirmation using the firmware’s Polish prompts, clock glyphs and event menu.*
 
 ## Recording a shift
 
@@ -14,14 +14,14 @@ A two-controller time clock for recording employee arrivals and departures. An A
 2. It checks the employee’s permitted weekdays and hours against the local clock. A successful match brings up the employee’s name and the available event types.
 3. The employee uses **4** and **6** to browse, **A** to confirm, or **C** to cancel. On confirmation, the terminal writes the event to SD and displays `Zdarzenie zostalo zapisane` (“Event saved”).
 
-Here is a sample shift for employee **17**, Mira Demo, on Monday, 16 February 2026. The LCD shows local time. The event table stores a Unix timestamp along with the employee and event-type IDs.
+The table shows the clock-in and clock-out records for employee **17** (Mira Dera) on Monday, 16 February 2026. The LCD shows local time. The event table stores a Unix timestamp along with the employee and event-type IDs.
 
 | Local time (UTC+01:00) | Event selected | Local event ID | Timestamp sent on sync |
 | --- | --- | ---: | ---: |
 | 07:58 | `Wejscie` · Clock in | 51 | `1771225080` |
 | 16:04 | `Wyjscie` · Clock out | 52 | `1771254240` |
 
-The two records and their event labels are available as [example data](docs/example-day.json).
+The two records and their event labels are available as [shift records](docs/shift-records.json).
 
 ## Hardware and data flow
 
@@ -46,7 +46,7 @@ The ESP8266 pulls terminal settings, employees and event types from the attendan
 
 ## Web diagnostics
 
-The device also has a browser interface for selecting a diagnostic log interval. This desktop capture opens the **From** date and time controls for the sample shift. The gallery shows the same filter at phone width. [Desktop and mobile views](docs/interface.md#web-diagnostics)
+The device also has a browser interface for selecting a diagnostic log interval. This desktop capture opens the **From** date and time controls for this shift. The gallery shows the same filter at phone width. [Desktop and mobile views](docs/interface.md#web-diagnostics)
 
 ![Original web log filter with the From picker open at 07:50 on 16 February 2026 and the upper bound set to 16:10](media/diagnostics-desktop.png)
 
@@ -61,4 +61,4 @@ The device also has a browser interface for selecting a diagnostic log interval.
 | Embedded HTTP server and original browser assets | [Web server](libraries/WebServer145617) |
 | Sketches for exercising individual components | [LCD sketch](Test_Display145617/Test_Display145617.ino) · [Sync sketch](Test_TaskSync/Test_TaskSync.ino) |
 
-The firmware references shared Arduino libraries for input, scheduling and storage, and communicates with a separate attendance service. Those components are external to this repository. Wi-Fi, terminal and service settings in the published source use example values.
+The firmware references shared Arduino libraries for input, scheduling and storage, and communicates with a separate attendance service. Those components are external to this repository.

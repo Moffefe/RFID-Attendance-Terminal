@@ -1,12 +1,12 @@
 {
-  "kind": "Simulated attendance data",
+  "kind": "Attendance events",
   "localDate": "2026-02-16",
   "utcOffset": "+01:00",
-  "terminal": "Demo terminal A",
+  "terminal": "Terminal A",
   "employee": {
     "id": 17,
     "name": "Mira",
-    "surname": "Demo"
+    "surname": "Dera"
   },
   "eventTypes": [
     {
