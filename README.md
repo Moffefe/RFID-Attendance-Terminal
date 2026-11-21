@@ -2,7 +2,7 @@
 
 A two-controller time clock for recording employee arrivals and departures. An ATmega328P reads the badge and keypad. An ESP8266 checks the employee’s access schedule, guides them on a 20 × 4 character display, and saves their selection to an SD card. The terminal can record a shift while Wi-Fi is unavailable and upload the events when the attendance service is reachable again.
 
-[Interface gallery](docs/interface.md) · [ESP8266 sketch](Test_MainController145617/Test_MainController145617.ino) · [ATmega328P sketch](Test_MainController2/Test_MainController2.ino)
+[Interface gallery](docs/interface.md) · [Hardware photos](docs/hardware.md#hardware-photos) · [ESP8266 sketch](Test_MainController145617/Test_MainController145617.ino) · [ATmega328P sketch](Test_MainController2/Test_MainController2.ino)
 
 ![Six LCD screens showing badge and PIN entry, employee recognition, event selection and save confirmation](media/terminal-sequence.png)
 

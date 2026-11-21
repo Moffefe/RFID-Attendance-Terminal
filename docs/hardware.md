@@ -2,6 +2,16 @@
 
 The ATmega328P reads badges and keys. The ESP8266 handles the display, clock and event storage. [Project overview](../README.md) · [Interface gallery](interface.md)
 
+## Hardware photos
+
+[![Terminal circuit board and blue-and-red keypad joined by a flat ribbon cable](../media/terminal-board-and-keypad.png)](../media/terminal-board-and-keypad.png)
+
+*Terminal board with its 4 × 4 keypad.*
+
+[![Upright RFID antenna board beside the shielded ESP8266 module](../media/terminal-rfid-reader.png)](../media/terminal-rfid-reader.png)
+
+*Close-up of the RFID reader and ESP8266 Wi-Fi module.*
+
 ## Front panel
 
 [![Terminal front with the 20 × 4 LCD above a 4 × 4 keypad and badge target. A detail shows the card, plastic face and reader antenna in order.](../media/terminal-front.png)](../media/terminal-front.png)
