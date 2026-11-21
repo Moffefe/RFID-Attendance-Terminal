@@ -10,7 +10,7 @@ A two-controller time clock for recording employee arrivals and departures. An A
 
 [![RFID terminal front panel with the LCD, keypad and a cutaway showing the badge in front of the reader antenna](media/terminal-front.png)](docs/hardware.md)
 
-*The badge target on the front panel lines up with the reader antenna behind the plastic face.* [Enclosure, assembly and controller connections](docs/hardware.md)
+*The badge target on the front panel lines up with the reader antenna behind the plastic face.* [Front panel and controller connections](docs/hardware.md)
 
 ## Recording a shift
 

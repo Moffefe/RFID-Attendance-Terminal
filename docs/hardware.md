@@ -1,18 +1,12 @@
 # Terminal hardware
 
-The ATmega328P reads badges and keys. The ESP8266 handles the display, clock and event storage. The enclosure drawings show how these parts can fit into a wall-mounted terminal with a removable back. [Project overview](../README.md) · [Interface gallery](interface.md)
+The ATmega328P reads badges and keys. The ESP8266 handles the display, clock and event storage. [Project overview](../README.md) · [Interface gallery](interface.md)
 
 ## Front panel
 
 [![Terminal front with the 20 × 4 LCD above a 4 × 4 keypad and badge target. A detail shows the card, plastic face and reader antenna in order.](../media/terminal-front.png)](../media/terminal-front.png)
 
 When the display reads `Zeskanuj tag RFID`, the employee presents a badge to the marked area to the right of the keypad. The detail shows the antenna directly behind that area, parallel to the front. In the event menu, **4** and **6** move between entries, **A** saves the selection and **C** cancels. [Employee workflow](../libraries/EmployeeManager/EmployeeManager.cpp) · [LCD sequence](interface.md#terminal-display)
-
-## Inside the enclosure
-
-[![Exploded view with the front panel, a carrier holding the two controllers, RTC and SD socket, and the rear shell with its mounting bosses.](../media/enclosure-assembly.png)](../media/enclosure-assembly.png)
-
-The reader stays with the front panel as the enclosure opens. The keypad ribbon runs to a carrier that holds the ATmega328P, ESP8266, DS3231 clock and SD socket. The rear shell supports the carrier on four corner bosses. With the shell open, the card slides out at the lower edge while the display and keypad stay in place.
 
 ## Controller connections
 
