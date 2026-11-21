@@ -8,6 +8,10 @@ A two-controller time clock for recording employee arrivals and departures. An A
 
 *The display guides the employee from badge scan to confirmation using the firmware’s Polish prompts, clock glyphs and event menu.*
 
+[![RFID terminal front panel with the LCD, keypad and a cutaway showing the badge in front of the reader antenna](media/terminal-front.png)](docs/hardware.md)
+
+*The badge target on the front panel lines up with the reader antenna behind the plastic face.* [Enclosure, assembly and controller connections](docs/hardware.md)
+
 ## Recording a shift
 
 1. The terminal identifies the employee by badge, four-digit PIN, or both, according to its configuration.
