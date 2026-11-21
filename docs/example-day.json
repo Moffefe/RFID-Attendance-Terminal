@@ -1,0 +1,43 @@
+{
+  "kind": "Simulated attendance data",
+  "localDate": "2026-02-16",
+  "utcOffset": "+01:00",
+  "terminal": "Demo terminal A",
+  "employee": {
+    "id": 17,
+    "name": "Mira",
+    "surname": "Demo"
+  },
+  "eventTypes": [
+    {
+      "id": 1,
+      "name": "Wejscie",
+      "comment": "Poczatek zmiany"
+    },
+    {
+      "id": 2,
+      "name": "Wyjscie",
+      "comment": "Koniec zmiany"
+    }
+  ],
+  "clockInLocal": "07:58:00",
+  "clockOutLocal": "16:04:00",
+  "diagnosticFilter": {
+    "from": "07:50",
+    "to": "16:10"
+  },
+  "events": [
+    {
+      "id": 51,
+      "time": 1771225080,
+      "employeeId": 17,
+      "eventTypeId": 1
+    },
+    {
+      "id": 52,
+      "time": 1771254240,
+      "employeeId": 17,
+      "eventTypeId": 2
+    }
+  ]
+}

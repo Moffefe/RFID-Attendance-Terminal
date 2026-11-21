@@ -1,0 +1,203 @@
+<script type="text/javascript">
+	function initReadLogs()
+	{
+		$('#dropdownToggleFrom').next().children().eq(0).data('dropdown').options.onDrop = function()
+		{
+			$('#dropdownToggleFrom').parent().removeClass('stub');
+			$('#dropdownToggleFrom').parent().css('width', 'unset');
+			$('#dropdownToggleFrom').parent().addClass('cell cell-md-4');
+		};
+	  
+		$('#dropdownToggleFrom').next().children().eq(0).data('dropdown').options.onUp = function()
+		{
+			$('#dropdownToggleFrom').parent().removeClass('cell cell-md-4');
+			$('#dropdownToggleFrom').parent().addClass('stub');
+			$('#dropdownToggleFrom').parent().css('width', '170px');
+		};
+		
+		$('#dropdownToggleTo').next().children().eq(0).data('dropdown').options.onDrop = function()
+		{
+			$('#dropdownToggleTo').parent().removeClass('stub');
+			$('#dropdownToggleTo').parent().css('width', 'unset');
+			$('#dropdownToggleTo').parent().addClass('cell cell-md-4');
+		};
+	  
+		$('#dropdownToggleTo').next().children().eq(0).data('dropdown').options.onUp = function()
+		{
+			$('#dropdownToggleTo').parent().removeClass('cell cell-md-4');
+			$('#dropdownToggleTo').parent().addClass('stub');
+			$('#dropdownToggleTo').parent().css('width', '170px');
+		};
+		
+		$('#dropdownToggleFrom').next().find('input').eq(0).data('datepicker').options.onSet = function()
+		{
+			$('#pickedFromDate').html(arguments[0].toLocaleDateString());
+		};
+		
+		$('#dropdownToggleFrom').next().find('input').eq(1).data('timepicker').options.onSet = function()
+		{
+			$('#pickedFromTime').html(arguments[1].slice(0, -3));
+		};
+		
+		$('#dropdownToggleTo').next().find('input').eq(0).data('datepicker').options.onSet = function()
+		{
+			$('#pickedToDate').html(arguments[0].toLocaleDateString());
+		};
+		
+		$('#dropdownToggleTo').next().find('input').eq(1).data('timepicker').options.onSet = function()
+		{
+			$('#pickedToTime').html(arguments[1].slice(0, -3));
+		};
+		
+		LoggerClient.init($('#logsTimeline'),
+						  $('#logsGraph1'),
+						  $('#logsGraph2'),
+						  $('#logsGraph3'),
+						  $('#pickedFromDate'),
+						  $('#pickedFromTime'),
+						  $('#pickedToDate'),
+						  $('#pickedToTime'),
+						  $('#noTimeLogs'),
+						  $('#classView'),
+						  $('#logsTimelineSlider'),
+						  logsDefinitions,
+						  $('#getLogsButton'));
+	}
+	
+	
+	
+	var logsDefinitions = [];
+	
+	logsDefinitions[2] = [];
+	logsDefinitions[2][0] = 'WiFiModuleESP';
+	logsDefinitions[2][51] = [0, '%s próby połączenia z AP nie powiodły się, przechodzę w tryb AP'];
+	logsDefinitions[2][52] = [0, 'Próba %s połączenia z AP nieudana'];
+	logsDefinitions[2][101] = [0, 'Wejście w nowy stan: wait'];
+	logsDefinitions[2][102] = [0, 'Wejście w nowy stan: start'];
+	logsDefinitions[2][103] = [0, 'Wejście w nowy stan: offline'];
+	logsDefinitions[2][104] = [0, 'Wejście w nowy stan: online'];
+	logsDefinitions[2][131] = [0, 'Udało się zainicjować pamięć masową'];
+	logsDefinitions[2][132] = [0, 'Inicjuje obiekt serialListener'];
+	logsDefinitions[2][201] = [0, 'Nie wykryto pliku konfiguracyjnego'];
+	logsDefinitions[2][202] = [0, 'Wykryto plik konfiguracyjny'];
+	logsDefinitions[2][203] = [0, 'Rozpoczynam mapowanie nazw plików z folderu /Assets'];
+	logsDefinitions[2][204] = [0, 'Dodanie mapowania %s -\> %s'];
+	logsDefinitions[2][205] = [0, 'Nie udało się dodać mapowania, plik %s nie istnieje'];
+	logsDefinitions[2][206] = [0, 'Nie udało się dodać mapowania'];
+	logsDefinitions[2][221] = [0, 'Transfer pliku zakończony niepowodzeniem, czas miną'];
+	logsDefinitions[2][222] = [32, 'Ilość wolnej pamięci RAM'];
+	logsDefinitions[2][223] = [32, 'Prędkość pętli głównej'];
+	logsDefinitions[2][241] = [0, 'Uruchomiono serwer HTTP'];
+	logsDefinitions[2][301] = [0, 'Usunięto folder %s'];
+	logsDefinitions[2][302] = [0, 'Nie udało sie usunąć folderu %s'];
+	logsDefinitions[2][303] = [0, 'Usunięto plik %s'];
+	logsDefinitions[2][304] = [0, 'Nie udłao się usunąć pliku %s'];
+	logsDefinitions[2][401] = [0, 'Wysyłam plik %s o rozmiarze %s bajtów, typ to %s'];
+	logsDefinitions[2][402] = [0, 'Plik %s nie istnieje'];
+	logsDefinitions[2][431] = [0, 'Wysyłanie pliku %s zostało zakończone sukcesem'];
+	logsDefinitions[2][432] = [0, 'Wysyłanie pliku zostało przerwane, plik niedostępny'];
+	logsDefinitions[2][461] = [0, 'Wysyłanie pliku zostało przerwane, przerwanie połączenia'];
+	logsDefinitions[2][471] = [0, 'Zaplanowano całkowite formatowanie pamięci'];
+	logsDefinitions[2][481] = [0, 'Zaplanowano częściowe formatowanie pamięci'];
+	logsDefinitions[2][491] = [0, 'Shutdown'];
+	logsDefinitions[2][501] = [0, 'Restart'];
+	logsDefinitions[2][561] = [0, 'CallbackUploadBodyHandler(), Nie można rozpocząc upload\'u pliku'];
+	logsDefinitions[2][562] = [0, 'CallbackUploadBodyHandler(), Brakuje argumentow żądania'];
+	logsDefinitions[2][563] = [0, 'CallbackUploadBodyHandler(), Nie przesłano wszystkich części pliku'];
+	logsDefinitions[2][564] = [0, 'CallbackUploadBodyHandler(), Transfer pliku %s zakończony sukcesem. Rozmiar pliku to %s bajtów'];
+	logsDefinitions[2][565] = [0, 'CallbackUploadBodyHandler(), Odebrano %s/%s bajtów pliku'];
+	logsDefinitions[2][567] = [0, 'CallbackUploadBodyHandler(), Operacja zablokowana'];
+	logsDefinitions[2][601] = [0, 'Dodano dane dostepowe do AP %s'];
+	logsDefinitions[2][631] = [0, 'Ustawiono preferowany kanał AP na %s'];
+	
+	logsDefinitions[3] = [];
+	logsDefinitions[3][0] = 'DataStore';
+	
+	logsDefinitions[4] = [];
+	logsDefinitions[4][0] = 'DataBaseTable';
+	logsDefinitions[4][1] = [0, 'Usunięcie wszystkich rekordów'];
+	logsDefinitions[4][10] = [0, 'Liczenie rekordów w tabeli, wynik to %s'];
+	logsDefinitions[4][30] = [0, 'Selekcja rekordów wg pól o indeksach %s'];
+	logsDefinitions[4][31] = [0, 'Tablica nie posiada tylu pól'];
+	logsDefinitions[4][32] = [0, 'Wartość pola zbyt długa'];
+</script>
+
+<div class="row">
+	<div class="cell">
+		<div id="logsGraph1" style="background-color: #3a3a3a"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="cell">
+		<div id="logsGraph2" style="background-color: #3a3a3a"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="cell">
+		<div id="logsGraph3" style="background-color: #3a3a3a"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="cell">
+		<div id="logsTimeline" style="background-color: #3a3a3a"></div>
+		<div id="logsTimelineSlider" class="d-none">
+			<input type="range" min="0" max="255" class="slider">
+		</div>
+		<br>
+		<hr class="thin">
+	</div>
+</div>
+<div class="row flex-align-start">
+	<div class="stub" style="width: 170px">
+		<button id="dropdownToggleFrom" class="button" style="width: 160px"><span class="mif-calendar mif-3x fg-orange" style="vertical-align: unset"></span><h2 style="display: inline">From</h2></button>
+		<div class="pos-relative">
+			<div class="bg-dark fg-white" data-role="dropdown" data-toggle-element="#dropdownToggleFrom">
+				<br>
+				<input data-role="datepicker" data-distance="2" data-ok-button-icon="<span class='mif-checkmark fg-green'></span>" data-cancel-button-icon="<span class='mif-cross fg-red'></span>">
+				<br>
+				<input data-role="timepicker" data-seconds="false" data-distance="2" data-ok-button-icon="<span class='mif-checkmark fg-green'></span>" data-cancel-button-icon="<span class='mif-cross fg-red'></span>">
+				<br>
+			</div>
+		</div>
+		<span id="pickedFromDate"></span><span id="pickedFromTime" style="float: right"></span>
+	</div>
+	<div class="cell-fs-full d-none-sm" style="height: 16px"></div>
+	<div class="stub" style="width: 170px">
+		<button id="dropdownToggleTo" class="button" style="width: 160px"><span class="mif-calendar mif-3x fg-orange" style="vertical-align: unset"></span><h2 style="display: inline">To</h2></button>
+		<div class="pos-relative">
+			<div class="bg-dark fg-white" data-role="dropdown" data-toggle-element="#dropdownToggleTo">
+				<br>
+				<input data-role="datepicker" data-distance="2" data-ok-button-icon="<span class='mif-checkmark fg-green'></span>" data-cancel-button-icon="<span class='mif-cross fg-red'></span>">
+				<br>
+				<input data-role="timepicker" data-seconds="false" data-distance="2" data-ok-button-icon="<span class='mif-checkmark fg-green'></span>" data-cancel-button-icon="<span class='mif-cross fg-red'></span>">
+				<br>
+			</div>
+		</div>
+		<span id="pickedToDate"></span><span id="pickedToTime" style="float: right"></span>
+	</div>
+	<div class="cell-fs-full d-none-sm" style="height: 16px"></div>
+	<div class="stub" style="width: 200px">
+		<br>
+		<span data-role="popover" data-popover-text="When checked From<br>and To will be ignored"><input id="noTimeLogs" type="checkbox" data-role="switch" data-caption="No-Time Logs"></span>
+	</div>
+	<div class="cell-fs-full d-none-md" style="height: 16px"></div>
+	<div id="classView" class="cell-fs-full cell-md"></div>
+</div>
+<div class="row">
+	<div class="cell">
+		<br>
+		<hr class="thin">
+		<button id="getLogsButton" class="button" style="width: 180px"><span class="mif-chevron-thin-right mif-3x fg-orange" style="vertical-align: unset"></span><h2 style="display: inline">Get Logs</h2></button>
+	</div>
+</div>
+<br class="d-none-md">
+<br class="d-none-md">
+<br class="d-none-md">
+
+<script type="text/javascript">
+	setTimeout(function()
+	{
+		ContentBodyManager.contentBodyReady();
+	},
+	100);
+</script>

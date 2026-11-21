@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="/Assets/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/Assets/metro-all.min.css">
+	<link id="color-scheme" href="/Assets/metro-darcula.css" rel="stylesheet">
+	<script type="text/javascript">
+		function resizeContentContainer()							//
+		{															//
+			let minHeight = $(window).height();						// Dzeki niej panel aplikacji jest
+			minHeight -= contentContainer[0].offsetTop;				// rozciagniety do wysokosci monitora
+			contentContainer.css('min-height', minHeight);			//
+		}															//
+		
+		function centerThrobber()								//
+		{														//
+			let x = $(window).width() / 2;						//
+			let y = $(window).height() / 2;						// Dzieki niej animacja ladowania
+			x -= $('#throbber').width() / 2;					// jest wycentrowana na srodku ekranu
+			y -= $('#throbber').height() / 2;					//
+			$('#throbber').css({left: x, top: y});				//
+		}														//
+		
+		function initPlugin(element, name, options)				//
+		{														//
+			element = $(element);								//
+																//
+			try													//
+			{													//
+				if ($.fn[name] !== undefined)					//
+				{												//
+					$.fn[name].call(element, options);			//
+					element.data(name + '-initiated', true);	// Sluzy do tworzenia obiektow pluginow z biblioteki Metro.
+																// Nalezy ja wywolywac w kontekscie obiektu Metro za pomoca
+					var mc = element.data('metroComponent');	// metody call()
+																//
+					if (mc === undefined)						//
+						mc = [name];							//
+					else										//
+						mc.push(name);							//
+																//
+					element.data('metroComponent', mc);			//
+				}												//
+			}													//
+			catch (e)											//
+			{													//
+				console.log(e.message, e.stack);				//
+			}													//
+		}														//
+		
+		function menuItemClick(event)
+		{
+			event.preventDefault();
+			
+			if($(window).width() < Metro.media_sizes.MD && !$('.navview').hasClass("compacted"))
+				$("#pane-toggle").trigger("click");
+				
+			if(ContentBodyManager.currentDownload != null)
+				return;
+		
+			if(selectedMenuItem != null)
+			{
+				if(selectedMenuItem == $(this))
+				{
+					return;
+				}
+				else
+				{
+					selectedMenuItem.parent().removeClass("active");
+					selectedMenuItem.children().eq(0).children().eq(0).removeClass("fg-orange");
+				}
+			}
+			
+			$(this).parent().addClass("active");
+			$(this).children().eq(0).children().eq(0).addClass("fg-orange");
+			selectedMenuItem = $(this);
+		}
+		
+		function homeClick()
+		{
+			ContentBodyManager.show('Home');
+		}
+		
+		function ustawieniaClick()
+		{
+			ContentBodyManager.show('Ustawienia');
+		}
+		
+		
+		
+		var contentContainer = null;
+		var selectedMenuItem = null;
+		
+		
+	
+		$(document).ready(function()
+		{
+			contentContainer = $('#contentContainer');	// Dopasowywanie panelu aplikacji do
+			$(window).resize(resizeContentContainer);	// aktualnej wysokosci monitora
+			resizeContentContainer();					//
+			
+			$(window).resize(centerThrobber);			// Pozycjonuje animacje ladowania na
+			centerThrobber();							// srodku ekranu
+		
+			$("ul.navview-menu li a").each(function(index)		//
+			{													//
+				if($(this).hasClass('dropdown-toggle'))			//
+					return;										// Podswietlanie guzikow w panelu navview
+																//
+				$(this).click(menuItemClick);					//
+			});													//
+			
+			ContentBodyManager.init(contentContainer, $('#throbber'), $('#contentTitle'));		//
+			$('#home').click(homeClick);														//
+			$('#ustawienia').click(ustawieniaClick);											//
+			setTimeout(function()																// Konfiguracja tresci
+			{																					//
+				$("#home").trigger("click");													//
+			},																					//
+			100);																				//
+			
+			$('.navview-content').click(function(event)													//
+			{																							// Chowanie panelu navview po kliknieciu
+				if($(window).width() >= Metro.media_sizes.MD && !$('.navview').hasClass("compacted"))	// gdziekolwiek poza nim
+					$(".pull-button").trigger("click");													//
+			});																							//
+		});
+	</script>
+  </head>
+  <body>
+	<div class="container" style="max-width: 1920px">
+		<div class="pos-fixed z-top" style="top: 10px; left: 10px;">
+			<button id="pane-toggle" class="button square d-none-md"><span class="mif-menu"></span></button>
+		</div>
+	
+		<div id="throbber" class="pos-fixed z-top no-visible" data-role="activity" data-type="square"></div>
+	
+		<div data-role="navview" data-toggle="#pane-toggle">
+			<nav class="navview-pane pos-fixed" style="z-index: 200">
+				<button class="pull-button">
+					<span class="mif-menu fg-light"></span>
+				</button>
+
+				<ul class="navview-menu">
+					<li>
+						<a id="home" href="#">
+							<span class="icon"><span class="mif-home"></span></span>
+							<span class="caption">Home</span>
+						</a>
+                    </li>
+					<li>
+						<a id="ustawienia" href="#">
+							<span class="icon"><span class="mif-wrench"></span></span>
+							<span class="caption">Ustawienia</span>
+						</a>
+                    </li>
+				</ul>
+			</nav>
+
+			<div class="navview-content pl-4-md pr-4-md">
+				<h1>
+					<div class="grid">
+						<div class="row">
+							<div class="cell-sm-full d-none-md" style="height: 3px"></div>
+							<div class="cell-sm-full cell-md-half">
+								<span class="d-none-md" style="width: 38px; display: inline-block"></span>
+								<span id="contentTitle" style="display: inline-block">Content Title</span>
+							</div>
+						</div>
+					</div>
+					<hr class="thin">
+				</h1>
+				<p></p>
+				<div id="contentContainer" style="width: 100%"></div>
+			</div>
+		</div>
+	</div>
+
+    <script src="/Assets/metro.min.js"></script>
+	<script src="/Assets/ContentBodyManager.js"></script>
+  </body>
+</html>
